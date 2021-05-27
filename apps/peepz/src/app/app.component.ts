@@ -26,10 +26,8 @@ export class AppComponent implements OnInit, OnDestroy {
     },
     {
       icon: 'account_circle',
-      title: this.userService
-        .userValue?`User ${this.userService.userValue.username}`:"Login",
-      link: this.userService
-        .userValue?'user':'user/login',
+      title: 'User',
+      link: 'user',
     },
   ];
 
