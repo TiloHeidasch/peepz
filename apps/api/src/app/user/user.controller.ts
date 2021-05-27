@@ -12,12 +12,22 @@ import RegisterDto from './types/register.dto';
 import { UserService } from '../user/user.service';
 import { CaptchaService } from './captcha.service';
 import { BadRequestException } from '@nestjs/common';
-import { User } from '@peepz/api-interfaces';
 import Log from '../Log';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import ChangeUsername from './types/change-username.dto';
-import ChangePassword from './types/change-password.dto';
+import ChangeUsernameDto from './types/change-username.dto';
+import ChangePasswordDto from './types/change-password.dto';
+import {
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiCookieAuth,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
+import { environment } from '../../environments/environment';
+import { UserDto } from './types/user.dto';
 
+@ApiTags('User')
 @Controller('user')
 export class UserController {
   constructor(
@@ -26,9 +36,25 @@ export class UserController {
   ) {}
 
   @UseGuards(ThrottlerGuard)
+  @ApiOperation({
+    summary: 'Register',
+    description: `Register a new user of the API. Requires a valid ReCaptcha for following web-key: ${
+      environment.production
+        ? '6LeVzNEaAAAAALzTL14ZKpNJB9o4V799nAuDqtCl'
+        : '6Ld9-NIaAAAAAKyJtGklUT0NwGU8U7P9DhJ1XAT0'
+    }.`,
+  })
+  @ApiCookieAuth()
+  @ApiOkResponse({
+    description: 'The created User.',
+    type: [UserDto],
+  })
+  @ApiBadRequestResponse({
+    description: 'Invalid Captcha or Duplicate Username',
+  })
   @Throttle(3, 60)
   @Post('register')
-  async register(@Body() registrationData: RegisterDto): Promise<User> {
+  async register(@Body() registrationData: RegisterDto): Promise<UserDto> {
     const start = new Date().getTime();
     const captcha = registrationData.captcha;
     const captchaResult = await this.captchaService.validate(captcha);
@@ -41,11 +67,24 @@ export class UserController {
     return result;
   }
   @UseGuards(JwtAuthGuard)
+  @ApiOperation({
+    summary: 'Change Username',
+    description:
+      'Change the user name of the logged in user. Requires a valid JWT Token.',
+  })
+  @ApiCookieAuth()
+  @ApiOkResponse({
+    description: 'The changed User.',
+    type: [UserDto],
+  })
+  @ApiBadRequestResponse({
+    description: 'Duplicate Username',
+  })
   @Put('username')
   async changeUsername(
     @Request() request,
-    @Body() body: ChangeUsername
-  ): Promise<User> {
+    @Body() body: ChangeUsernameDto
+  ): Promise<UserDto> {
     const start = new Date().getTime();
     const { user } = request;
     const { username } = body;
@@ -58,11 +97,21 @@ export class UserController {
     return result;
   }
   @UseGuards(JwtAuthGuard)
+  @ApiOperation({
+    summary: 'Change Password',
+    description:
+      'Change the password of the logged in user. Requires a valid JWT Token.',
+  })
+  @ApiCookieAuth()
+  @ApiOkResponse({
+    description: 'The changed User.',
+    type: [UserDto],
+  })
   @Put('password')
   async changePassword(
     @Request() request,
-    @Body() body: ChangePassword
-  ): Promise<User> {
+    @Body() body: ChangePasswordDto
+  ): Promise<UserDto> {
     const start = new Date().getTime();
     const { user } = request;
     const { password } = body;

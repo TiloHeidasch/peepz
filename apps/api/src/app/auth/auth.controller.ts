@@ -5,9 +5,19 @@ import { LocalAuthGuard } from './guards/local-auth.guard';
 import JwtRefreshGuard from './guards/jwt-refresh.guard';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { UserService } from '../user/user.service';
-import { User } from '@peepz/api-interfaces';
 import Log from '../Log';
+import LoginDto from './types/login.dto';
+import {
+  ApiTags,
+  ApiBody,
+  ApiCookieAuth,
+  ApiOkResponse,
+  ApiUnauthorizedResponse,
+  ApiOperation,
+} from '@nestjs/swagger';
+import { UserDto } from '../user/types/user.dto';
 
+@ApiTags('Authentication')
 @Controller('auth')
 export class AuthController {
   constructor(
@@ -17,8 +27,19 @@ export class AuthController {
 
   @HttpCode(200)
   @UseGuards(LocalAuthGuard)
-  @Post('log-in')
-  async logIn(@Request() request): Promise<User> {
+  @ApiOperation({
+    summary: 'Login',
+    description:
+      'Login to the API using username and password, to recieve a JWT- and a Refreshtoken for use with the other endpoints.',
+  })
+  @ApiBody({ type: LoginDto })
+  @ApiOkResponse({
+    description: 'Details of the logged in User',
+    type: UserDto,
+  })
+  @ApiUnauthorizedResponse({ description: 'Wrong credentials' })
+  @Post('login')
+  async logIn(@Request() request): Promise<UserDto> {
     const start = new Date().getTime();
     const { user } = request;
     const accessTokenCookie = this.service.getCookieWithJwtAccessToken(user.id);
@@ -50,7 +71,15 @@ export class AuthController {
 
   @HttpCode(200)
   @UseGuards(JwtAuthGuard)
-  @Post('log-out')
+  @ApiOperation({
+    summary: 'Logout',
+    description:
+      'Logout from the API. This will clear your local JWT- and a Refreshtoken.',
+  })
+  @ApiCookieAuth()
+  @ApiOkResponse({ description: 'Successfully logged out' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @Post('logout')
   async logOut(@Request() request) {
     const start = new Date().getTime();
     const { user } = request;
@@ -60,9 +89,21 @@ export class AuthController {
     Log.log(AuthController.name, this.logOut, start, end, { user });
   }
 
+  @HttpCode(200)
   @UseGuards(JwtRefreshGuard)
+  @ApiOperation({
+    summary: 'Refresh JWT Token',
+    description:
+      'Recieve a new JWT Token for use with the other endpoints. Requires a valid Refresh Token.',
+  })
+  @ApiCookieAuth()
+  @ApiOkResponse({
+    description: 'Details of the refreshed in User',
+    type: UserDto,
+  })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @Post('refresh')
-  async refresh(@Request() request): Promise<User> {
+  async refresh(@Request() request): Promise<UserDto> {
     const start = new Date().getTime();
     const { user } = request;
     const accessTokenCookie = this.service.getCookieWithJwtAccessToken(

@@ -2,8 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { UserService } from '../user/user.service';
-import { PersonDto } from './person.dto';
-import { Characteristic, Person } from './person.schema';
+import { Characteristic } from './types/characteristic';
+import { PersonDto } from './types/person.dto';
+import { Person } from './types/person.schema';
 
 @Injectable()
 export class PersonService {

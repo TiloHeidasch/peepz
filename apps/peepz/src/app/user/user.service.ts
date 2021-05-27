@@ -48,7 +48,7 @@ export class UserService {
   login(username: string, password: string): Observable<User> {
     return this.http
       .post<User>(
-        '/api/auth/log-in',
+        '/api/auth/login',
         { username, password },
         { withCredentials: true }
       )
@@ -62,7 +62,7 @@ export class UserService {
 
   logout() {
     this.http
-      .post<any>('/api/auth/log-out', {}, { withCredentials: true })
+      .post<any>('/api/auth/logout', {}, { withCredentials: true })
       .subscribe();
     this.stopRefreshTokenTimer();
     localStorage.removeItem('user');

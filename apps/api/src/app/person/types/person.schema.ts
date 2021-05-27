@@ -1,16 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import {
-  Characteristic as CharacteristicInterface,
-  Person as PersonInterface,
-  Tag,
-} from 'libs/api-interfaces/src';
+import { Person as PersonInterface, Tag } from 'libs/api-interfaces/src';
+import { Characteristic } from './characteristic';
 
-export class Characteristic implements CharacteristicInterface {
-  id: string;
-  characteristics: Characteristic[];
-  name: string;
-}
 @Schema()
 export class Person extends Document implements PersonInterface {
   @Prop()
