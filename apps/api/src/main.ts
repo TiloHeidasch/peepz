@@ -18,7 +18,7 @@ async function bootstrap() {
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
   const port = process.env.PORT || 3333;
-  app.use('/app', express.static(path.join(__dirname, '..', 'peepz')));
+  app.use('/', express.static(path.join(__dirname, '..', 'peepz')));
   await app.listen(port, () => {
     const end = new Date().getTime();
     Log.log("main.ts",bootstrap, start, end, {
