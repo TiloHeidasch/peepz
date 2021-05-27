@@ -18,7 +18,9 @@ export class JwtRefreshStrategy extends PassportStrategy(
         },
       ]),
       secretOrKey:
-        process.env.jwtSecret || environment.refreshSecret || 'refreshSecret',
+        process.env.refreshSecret ||
+        environment.refreshSecret ||
+        'refreshSecret',
       passReqToCallback: true,
     });
   }
