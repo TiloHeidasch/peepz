@@ -4,7 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CryptoService } from './crypto.service';
 import { DecryptDialog } from './decrypt-dialog/decrypt-dialog.component';
-import { UserService } from './user/user.service';
 
 @Component({
   selector: 'peepz-root',
@@ -34,7 +33,6 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
-    private userService: UserService,
     public cryptoService: CryptoService,
     private dialog: MatDialog,
     private _snackBar: MatSnackBar
