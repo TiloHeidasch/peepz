@@ -49,7 +49,7 @@ export class AuthService {
   getCookieWithJwtAccessToken(userId: number) {
     const payload = { userId };
     const token = this.jwtService.sign(payload, {
-      secret: environment.jwtSecret,
+      secret: process.env.jwtSecret || environment.jwtSecret || 'jwtSecret',
       expiresIn: environment.jwtExpiry,
     });
     return {
@@ -61,7 +61,10 @@ export class AuthService {
   getCookieWithJwtRefreshToken(userId: number) {
     const payload = { userId };
     const token = this.jwtService.sign(payload, {
-      secret: environment.refreshSecret,
+      secret:
+        process.env.refreshSecret ||
+        environment.refreshSecret ||
+        'refreshSecret',
       expiresIn: environment.refreshExpiry,
     });
     return {

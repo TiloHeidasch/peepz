@@ -13,7 +13,8 @@ export class CaptchaService {
 
   public validate(value: string): Promise<any> {
     const remoteAddress = this.request.socket.remoteAddress;
-    const secretKey = environment.captchaSecret;
+    const secretKey =
+      process.env.captchaSecret || environment.captchaSecret || 'captchaSecret';
     const url =
       'https://www.google.com/recaptcha/api/siteverify?secret=' +
       secretKey +

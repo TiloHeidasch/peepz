@@ -14,7 +14,8 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
           return request?.cookies?.Authentication;
         },
       ]),
-      secretOrKey: environment.jwtSecret,
+      secretOrKey:
+        process.env.jwtSecret || environment.jwtSecret || 'jwtSecret',
     });
   }
 

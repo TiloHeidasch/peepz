@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { environment } from 'apps/peepz/src/environments/environment';
 import { UserService } from '../user.service';
 
 @Component({
@@ -11,6 +12,9 @@ import { UserService } from '../user.service';
 })
 export class RegisterComponent implements OnInit {
   captcha = undefined;
+  captchaSecret = environment.production
+    ? '6LeVzNEaAAAAALzTL14ZKpNJB9o4V799nAuDqtCl'
+    : '6Ld9-NIaAAAAAKyJtGklUT0NwGU8U7P9DhJ1XAT0';
   constructor(
     private router: Router,
     private userService: UserService,

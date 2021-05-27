@@ -14,7 +14,7 @@ import { environment } from '../../environments/environment';
     UserModule,
     PassportModule,
     JwtModule.register({
-      secret: environment.jwtSecret,
+      secret: process.env.jwtSecret || environment.jwtSecret || 'jwtSecret',
       signOptions: { expiresIn: environment.jwtExpiry },
     }),
   ],

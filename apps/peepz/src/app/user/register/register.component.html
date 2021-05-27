@@ -36,7 +36,7 @@
   
 <re-captcha
     (resolved)="resolved($event)"
-    siteKey="6Ld9-NIaAAAAAKyJtGklUT0NwGU8U7P9DhJ1XAT0"
+    [siteKey]="captchaSecret"
   ></re-captcha>
   <button mat-raised-button color="primary" class="register-button" [disabled]="!captcha||usernameFormControl.invalid||passwordFormControl.invalid" (click)="register()">Register</button>
   <button mat-stroked-button color="primary"class="register-button" routerLink="/user/login">Login</button>
