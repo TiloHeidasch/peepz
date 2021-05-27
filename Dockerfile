@@ -14,7 +14,7 @@ COPY angular.json tsconfig.base.json nx.json .eslintrc.json jest.config.js ./
 COPY apps ./apps
 
 RUN npm run nx -- build api --prod && \
-    npm run nx -- build peepz --prod --base-href /app && \
+    npm run nx -- build peepz --prod && \
     npm prune --production
 
 # --------------------------
