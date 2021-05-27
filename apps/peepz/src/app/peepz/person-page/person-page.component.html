@@ -1,0 +1,248 @@
+<div id="person-page-wrapper" *ngIf="person">
+  <div id="person-page-columns-wrapper">
+    <div id="person-page-overview-column" class="person-page-column">
+      <div id="person-page-image-wrapper">
+        <img
+          id="person-page-image"
+          [src]="
+            cryptoService.isEncrypted()
+              ? 'https://www.w3schools.com/howto/img_avatar2.png'
+              : cryptoService.decrypt(person.picture)
+              ? cryptoService.decrypt(person.picture)
+              : 'https://www.w3schools.com/howto/img_avatar2.png'
+          "
+          alt=""
+        />
+        <button
+          id="person-page-upload-image-button"
+          mat-mini-fab
+          color="accent"
+          (click)="imageInput.click()"
+          [disabled]="cryptoService.isEncrypted()"
+        >
+          <mat-icon>add_a_photo</mat-icon>
+        </button>
+        <input
+          hidden
+          #imageInput
+          type="file"
+          accept="image/*"
+          (change)="uploadImage(imageInput)"
+        />
+      </div>
+      <div id="person-page-name-wrapper" class="person-page-form-field-wrapper">
+        <mat-form-field
+          class="person-page-form-field"
+          id="person-page-name"
+          appearance="standard"
+        >
+          <mat-label>Name</mat-label>
+          <input
+            [disabled]="cryptoService.isEncrypted()"
+            (change)="setName($event)"
+            [value]="cryptoService.decrypt(person.name) || ''"
+            matInput
+            placeholder="Gustav Gans"
+          />
+        </mat-form-field>
+      </div>
+      <div
+        id="person-page-birthday-wrapper"
+        class="person-page-form-field-wrapper"
+      >
+        <mat-form-field class="person-page-form-field" appearance="standard">
+          <mat-label>Birthday</mat-label>
+          <input
+            [disabled]="cryptoService.isEncrypted()"
+            (dateChange)="setBirthday($event)"
+            [value]="cryptoService.decrypt(person.birthday) || ''"
+            matInput
+            [matDatepicker]="birthdayPicker"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="birthdayPicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #birthdayPicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div id="person-page-tags-wrapper" class="person-page-form-field-wrapper">
+        <mat-form-field
+          id="person-page-tags"
+          class="tag-list person-page-form-field"
+        >
+          <mat-label>Tags</mat-label>
+          <mat-chip-list #tagList aria-label="Tags">
+            <mat-chip
+              [disabled]="cryptoService.isEncrypted()"
+              [class]="getTagClass(tag)"
+              *ngFor="let tag of person.tags"
+              removable
+              (removed)="removeTag(tag)"
+            >
+              {{ cryptoService.decrypt(tag.name) }}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+            <input
+              placeholder="New tag..."
+              #tagInput
+              [formControl]="tagFormControl"
+              [matAutocomplete]="tagAutocomplete"
+              [matChipInputFor]="tagList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              (matChipInputTokenEnd)="addTag($event)"
+              (change)="addTag($event.target)"
+            />
+          </mat-chip-list>
+          <mat-autocomplete
+            #tagAutocomplete="matAutocomplete"
+            (optionSelected)="tagSelected($event)"
+          >
+            <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
+              {{ cryptoService.decrypt(tag.name) }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <div
+        id="person-page-last-contact-wrapper"
+        class="person-page-form-field-wrapper"
+      >
+        <mat-form-field
+          class="person-page-form-field"
+          id="person-page-last-contact"
+          appearance="standard"
+        >
+          <mat-label>Last Contact</mat-label>
+          <input
+            [disabled]="cryptoService.isEncrypted()"
+            (dateChange)="setLastContact($event)"
+            [value]="cryptoService.decrypt(person.lastContact) || ''"
+            matInput
+            [matDatepicker]="lastContactPicker"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="lastContactPicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #lastContactPicker></mat-datepicker>
+        </mat-form-field>
+
+        <button
+          [disabled]="cryptoService.isEncrypted()"
+          mat-button
+          color="accent"
+          (click)="setLastContactToToday()"
+        >
+          Today
+        </button>
+      </div>
+    </div>
+    <div id="person-page-second-column" class="person-page-column">
+      <div
+        id="person-page-character-group-1-wrapper"
+        class="person-page-character-group-wrapper"
+      >
+        <div
+          id="person-page-character-group-1"
+          class="person-page-character-group"
+        >
+          <div
+            id="person-page-character-group-1-content"
+            class="person-page-character-group-content"
+          >
+            <peepz-characteristic-tree
+              [characteristicGroup]="person.characteristicGroup1"
+              [person]="person"
+            ></peepz-characteristic-tree>
+          </div>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div
+        id="person-page-character-group-2-wrapper"
+        class="person-page-character-group-wrapper"
+      >
+        <div
+          id="person-page-character-group-2"
+          class="person-page-character-group"
+        >
+          <div
+            id="person-page-character-group-2-content"
+            class="person-page-character-group-content"
+          >
+            <peepz-characteristic-tree
+              [characteristicGroup]="person.characteristicGroup2"
+              [person]="person"
+            ></peepz-characteristic-tree>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="person-page-third-column" class="person-page-column">
+      <div
+        id="person-page-character-group-3-wrapper"
+        class="person-page-character-group-wrapper"
+      >
+        <div
+          id="person-page-character-group-3"
+          class="person-page-character-group"
+        >
+          <peepz-characteristic-tree
+            [characteristicGroup]="person.characteristicGroup3"
+            [person]="person"
+          ></peepz-characteristic-tree>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div
+        id="person-page-character-group-4-wrapper"
+        class="person-page-character-group-wrapper"
+      ></div>
+      <div
+        id="person-page-character-group-4"
+        class="person-page-character-group"
+      >
+        <peepz-characteristic-tree
+          [characteristicGroup]="person.characteristicGroup4"
+          [person]="person"
+        ></peepz-characteristic-tree>
+      </div>
+    </div>
+  </div>
+  <div id="person-page-freetext">
+    <quill-editor
+      style="height: '10rem'"
+      [formControl]="freeTextFormControl"
+    ></quill-editor>
+  </div>
+  <mat-divider></mat-divider>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title id="person-page-danger-zone-title">
+          Danger Zone
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <button
+        id="person-page-danger-zone-randomize"
+        mat-raised-button
+        color="primary"
+        [disabled]="cryptoService.isEncrypted()"
+        (click)="randomize()"
+      >
+        Randomize
+      </button>
+      <mat-divider></mat-divider>
+      <button
+        id="person-page-danger-zone-delete"
+        mat-raised-button
+        color="warn"
+        [disabled]="cryptoService.isEncrypted()"
+        (click)="deletePerson()"
+      >
+        Delete
+      </button>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

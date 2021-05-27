@@ -1,9 +1,31 @@
-<div style="text-align: center">
-  <h1>Welcome to peepz!</h1>
-  <img
-    width="450"
-    src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png"
-    alt="Nx - Powerful, Extensible Dev Tools"
-  />
-</div>
-<div>Message: {{ hello$ | async | json }}</div>
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="snav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Peepz</span>
+  
+      <span class="toolbar-spacer"></span>
+  <button mat-icon-button (click)="crypt()">
+        <mat-icon *ngIf="cryptoService.isEncrypted()">lock_open</mat-icon>
+        <mat-icon *ngIf="!cryptoService.isEncrypted()">lock</mat-icon>
+      </button>
+</mat-toolbar>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #snav
+    [mode]="mobileQuery.matches ? 'over' : 'side'"
+    [fixedInViewport]="mobileQuery.matches"
+    fixedTopGap="56"
+  >
+  <div id="banner-wrapper"><img id="banner" src="assets/peepz.png" alt="" srcset=""></div>
+    <mat-nav-list>
+      <mat-list-item [routerLink]="nav.link" *ngFor="let nav of navElements">
+    <mat-icon mat-list-icon>{{nav.icon}}</mat-icon>
+    <div mat-line>{{nav.title}}</div></mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+<router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

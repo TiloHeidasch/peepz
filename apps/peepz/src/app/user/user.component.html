@@ -1,0 +1,66 @@
+<div id="user-wrapper">
+  <div id="user-header">
+    <div id="user-greeting">Hi, {{ user.username }}</div>
+    <button mat-raised-button color="warn" (click)="logout()">Logout</button>
+  </div>
+  
+  <mat-divider></mat-divider>
+  <div id="user-change">
+      <div id="change-username" class="user-form-field-wrapper">
+    <mat-form-field appearance="fill" class="user-form-field">
+      <mat-label>Username</mat-label>
+      <input
+        matInput
+        [formControl]="usernameFormControl"
+        [(ngModel)]="newUsername"
+        required
+      />
+      <mat-error *ngIf="usernameFormControl.invalid">{{
+        getUsernameErrorMessage()
+      }}</mat-error>
+    </mat-form-field>
+    <button
+    [disabled]="usernameFormControl.invalid||newUsername===user.username"
+      mat-raised-button
+      color="accent"
+      class="change-button"
+      (click)="changeUsername()"
+    >
+      Change
+    </button>
+    </div>
+    <div id="changePassword" class="user-form-field-wrapper">
+    <mat-form-field appearance="fill" class="user-form-field">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        [type]="hidePassword ? 'password' : 'text'"
+        [(ngModel)]="newPassword"
+        [formControl]="passwordFormControl"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hidePassword = !hidePassword"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hidePassword"
+      >
+        <mat-icon>{{
+          hidePassword ? 'visibility_off' : 'visibility'
+        }}</mat-icon>
+      </button>
+      <mat-error *ngIf="passwordFormControl.invalid">{{
+        getPasswordErrorMessage()
+      }}</mat-error>
+    </mat-form-field>
+    <button
+    [disabled]="passwordFormControl.invalid"
+      mat-raised-button
+      color="accent"
+      class="change-button"
+      (click)="changeUsername()"
+    >
+      Change
+    </button>
+  </div>
+</div></div>

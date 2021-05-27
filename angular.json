@@ -48,8 +48,14 @@
             "tsConfig": "apps/peepz/tsconfig.app.json",
             "aot": true,
             "assets": ["apps/peepz/src/favicon.ico", "apps/peepz/src/assets"],
-            "styles": ["apps/peepz/src/styles.scss"],
-            "scripts": []
+            "styles": ["apps/peepz/src/styles.scss",
+              "./node_modules/quill/dist/quill.core.css",
+              "./node_modules/quill/dist/quill.bubble.css",
+              "./node_modules/quill/dist/quill.snow.css",
+              "./node_modules/quill-emoji/dist/quill-emoji.css",
+              "./node_modules/quill-mention/dist/quill.mention.min.css"],
+            "scripts": [
+              "./node_modules/quill/dist/quill.min.js"]
           },
           "configurations": {
             "production": {

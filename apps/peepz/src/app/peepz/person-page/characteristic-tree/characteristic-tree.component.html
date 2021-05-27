@@ -1,0 +1,29 @@
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+
+            <mat-tree-node
+              *matTreeNodeDef="let node"
+              matTreeNodePadding
+            >
+              <button
+                mat-icon-button
+                matTreeNodeToggle
+                [disabled]="!flatNodeMap.get(node).characteristics||flatNodeMap.get(node).characteristics.length===0"
+              >
+                <mat-icon>
+                  {{
+                    treeControl.isExpanded(node)
+                      ? 'expand_more'
+                      : 'chevron_right'
+                  }}
+                </mat-icon>
+              </button>
+                <input [disabled]="cryptoService.isEncrypted()" matInput [value]="cryptoService.decrypt(node.name)" 
+              (change)="nodeNameChange($event,node)" placeholder="Characteristic" />
+              <button [disabled]="cryptoService.isEncrypted()"  mat-icon-button (click)="addNewNode(node)">
+                <mat-icon>add</mat-icon>
+              </button>
+              <button [disabled]="cryptoService.isEncrypted()"  *ngIf="flatNodeMap.get(node).id!=='root'" mat-icon-button (click)="deleteNode(node)">
+                <mat-icon color="warn">delete_forever</mat-icon>
+              </button>
+            </mat-tree-node>
+          </mat-tree>

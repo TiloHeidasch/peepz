@@ -1,0 +1,33 @@
+#user-header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: flex-start;
+    justify-content: space-between;
+    align-items: center;
+}
+#user-greeting {
+  font-size: 2rem;
+  line-height: 150%;
+}
+#user-wrapper {
+  margin: 1rem;
+}
+.user-form-field-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.user-form-field {
+  width: 70%;
+    max-width: 24rem;
+}
+.change-button {
+    margin: 1rem;
+}
+mat-divider{
+  margin: 1rem;
+}

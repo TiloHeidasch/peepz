@@ -1,0 +1,18 @@
+<div id="search-container">
+  <mat-form-field id="search" appearance="outline">
+    <mat-icon matPrefix>search</mat-icon>
+    <input type="text" matInput placeholder="Search" [formControl]="searchFormControl" />
+    <button *ngIf="searchFormControl.value!=''" matSuffix mat-icon-button (click)="searchFormControl.setValue('')">
+    <mat-icon>close</mat-icon>
+      </button>
+  </mat-form-field>
+</div>
+<div class="masonry-container">
+  <div class="masonry-element" *ngFor="let person of filteredPeople">
+    <peepz-person-list-entry [person]="person"></peepz-person-list-entry>
+  </div>
+</div>
+
+<button id="add-fab" mat-fab color="accent" [disabled]="cryptoService.isEncrypted()" (click)="addPerson()">
+  <mat-icon>person_add</mat-icon>
+</button>

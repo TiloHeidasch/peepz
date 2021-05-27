@@ -1,0 +1,43 @@
+<div id="register-wrapper">
+  <div id="register-greeting-wrapper">
+    <div id="background-ellipse"></div>
+  <img id="register-greeting" src="assets/welcome.png" alt="" srcset="">
+  </div>
+  <mat-form-field appearance="fill" class="register-form-field">
+    <mat-label>Username</mat-label>
+    <input
+      matInput
+      placeholder="Username"
+      [formControl]="usernameFormControl"
+      [(ngModel)]="username"
+      required
+    />
+    <mat-error *ngIf="usernameFormControl.invalid">{{ getUsernameErrorMessage() }}</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="register-form-field">
+    <mat-label>Password</mat-label>
+    <input
+      matInput
+      [type]="hidePassword ? 'password' : 'text'"
+      [(ngModel)]="password"
+      [formControl]="passwordFormControl"
+    />
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="hidePassword = !hidePassword"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hidePassword"
+    >
+      <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+    </button>
+    <mat-error *ngIf="passwordFormControl.invalid">{{ getPasswordErrorMessage() }}</mat-error>
+  </mat-form-field>
+  
+<re-captcha
+    (resolved)="resolved($event)"
+    siteKey="6Ld9-NIaAAAAAKyJtGklUT0NwGU8U7P9DhJ1XAT0"
+  ></re-captcha>
+  <button mat-raised-button color="primary" class="register-button" [disabled]="!captcha||usernameFormControl.invalid||passwordFormControl.invalid" (click)="register()">Register</button>
+  <button mat-stroked-button color="primary"class="register-button" routerLink="/user/login">Login</button>
+</div>

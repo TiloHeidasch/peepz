@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  captchaKey: '6Ld9-NIaAAAAAKyJtGklUT0NwGU8U7P9DhJ1XAT0',
 };
 
 /*

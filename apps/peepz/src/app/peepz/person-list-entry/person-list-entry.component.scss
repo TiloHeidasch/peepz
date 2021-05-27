@@ -1,0 +1,103 @@
+@import '../../../theme/theme.scss';
+
+mat-card {
+  margin: 0.5rem;
+}
+#card-content {
+  display: flex;
+}
+#thumbnail {
+  border-radius: 50%;
+  height: 6rem;
+}
+#text-container {
+  margin-left: 1rem;
+}
+#name {
+  font-weight: bold;
+  font-size: x-large;
+  margin-bottom: 0.25rem;
+}
+#company {
+  font-style: italic;
+}
+#image-container {
+  min-width: 6rem;
+}
+
+.tag-color1 {
+  color: $tag-color1-text !important;
+  background-color: $tag-color1-background !important;
+}
+.tag-color2 {
+  color: $tag-color2-text !important;
+  background-color: $tag-color2-background !important;
+}
+.tag-color3 {
+  color: $tag-color3-text !important;
+  background-color: $tag-color3-background !important;
+}
+.tag-color4 {
+  color: $tag-color4-text !important;
+  background-color: $tag-color4-background !important;
+}
+.tag-color5 {
+  color: $tag-color5-text !important;
+  background-color: $tag-color5-background !important;
+}
+.tag-color6 {
+  color: $tag-color6-text !important;
+  background-color: $tag-color6-background !important;
+}
+.tag-color7 {
+  color: $tag-color7-text !important;
+  background-color: $tag-color7-background !important;
+}
+.tag-color8 {
+  color: $tag-color8-text !important;
+  background-color: $tag-color8-background !important;
+}
+.tag-color9 {
+  color: $tag-color9-text !important;
+  background-color: $tag-color9-background !important;
+}
+.tag-color10 {
+  color: $tag-color10-text !important;
+  background-color: $tag-color10-background !important;
+}
+.tag-color11 {
+  color: $tag-color11-text !important;
+  background-color: $tag-color11-background !important;
+}
+.tag-color12 {
+  color: $tag-color12-text !important;
+  background-color: $tag-color12-background !important;
+}
+.tag-color13 {
+  color: $tag-color13-text !important;
+  background-color: $tag-color13-background !important;
+}
+.tag-color14 {
+  color: $tag-color14-text !important;
+  background-color: $tag-color14-background !important;
+}
+.tag-color15 {
+  color: $tag-color15-text !important;
+  background-color: $tag-color15-background !important;
+}
+.tag-color16 {
+  color: $tag-color16-text !important;
+  background-color: $tag-color16-background !important;
+}
+.tag-color17 {
+  color: $tag-color17-text !important;
+  background-color: $tag-color17-background !important;
+}
+.tag-color18 {
+  color: $tag-color18-text !important;
+  background-color: $tag-color18-background !important;
+}
+.tag-color19 {
+  color: $tag-color19-text !important;
+  background-color: $tag-color19-background !important;
+}

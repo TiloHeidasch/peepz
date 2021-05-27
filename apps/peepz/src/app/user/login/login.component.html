@@ -1,0 +1,60 @@
+<div id="login-wrapper"       (keydown)="login($event)"
+>
+  <div id="login-greeting-wrapper">
+    <div id="background-ellipse"></div>
+    <img id="login-greeting" src="assets/login.png" alt="" srcset="" />
+  </div>
+
+    <mat-form-field appearance="fill" class="login-form-field">
+      <mat-label>Username</mat-label>
+      <input
+        matInput
+        [formControl]="usernameFormControl"
+        [(ngModel)]="username"
+        required
+      />
+      <mat-error *ngIf="usernameFormControl.invalid">{{
+        getUsernameErrorMessage()
+      }}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="login-form-field">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        [type]="hidePassword ? 'password' : 'text'"
+        [(ngModel)]="password"
+        [formControl]="passwordFormControl"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hidePassword = !hidePassword"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hidePassword"
+      >
+        <mat-icon>{{
+          hidePassword ? 'visibility_off' : 'visibility'
+        }}</mat-icon>
+      </button>
+      <mat-error *ngIf="passwordFormControl.invalid">{{
+        getPasswordErrorMessage()
+      }}</mat-error>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      class="login-button"
+      (click)="login()"
+    >
+      Login
+    </button>
+    <button
+      mat-stroked-button
+      color="primary"
+      class="login-button"
+      routerLink="/user/register"
+    >
+      Register
+    </button>
+  <mat-error *ngIf="error">{{ error }}</mat-error>
+</div>

@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Delete {{name}}</h1>
+<div mat-dialog-content>
+  <p>To delete {{name}}, write <strong>"Delete {{name}}"</strong></p>
+  <mat-form-field>
+    <mat-label>Delete {{name}}</mat-label>
+    <input matInput [(ngModel)]="test">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button color="warn" [mat-dialog-close]="evaluate()" cdkFocusInitial>Delete</button>
+</div>

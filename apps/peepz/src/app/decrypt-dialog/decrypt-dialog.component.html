@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>Decrypt</h1>
+<div mat-dialog-content>
+  <p>To decrypt your data, please enter your <strong>encryption password.</strong></p>  
+    <mat-form-field appearance="fill" style="width: 100%;" >
+      <mat-label>Password</mat-label>
+      <input cdkFocusInitial
+        matInput
+        [type]="hidePassword ? 'password' : 'text'"
+        (value)="passwordFormControl.value"
+        [formControl]="passwordFormControl"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hidePassword = !hidePassword"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hidePassword"
+      >
+        <mat-icon>{{
+          hidePassword ? 'visibility_off' : 'visibility'
+        }}</mat-icon>
+      </button>
+      <mat-error *ngIf="passwordFormControl.invalid">{{
+        getPasswordErrorMessage()
+      }}</mat-error>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions class="flex-end">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="passwordFormControl.value" [disabled]="passwordFormControl.invalid" >Decrypt</button>
+</div>

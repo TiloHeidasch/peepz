@@ -1,0 +1,60 @@
+@import '~@angular/material/theming';
+@include mat-core();    
+$peepz-primary: mat-palette($mat-indigo);
+$peepz-accent:  mat-palette($mat-pink, A200, A100, A400);    
+$peepz-warn:    mat-palette($mat-red);    
+$peepz-inactive:    mat-palette($mat-gray);    
+$peepz-theme: mat-light-theme($peepz-primary, $peepz-accent, $peepz-warn);
+
+$primary: mat-color($peepz-primary);
+$primary-tint: mat-color($peepz-primary,300);
+$primary-shade: mat-color($peepz-primary,700);
+$accent: mat-color($peepz-accent);
+$accent-tint: mat-color($peepz-accent,A100);
+$accent-shade: mat-color($peepz-accent,A700);
+$warn: mat-color($peepz-warn);
+$inactive: mat-color($peepz-inactive,300);
+
+$tag-color1-text:#FFFFFF;
+$tag-color1-background:mat-color(mat-palette($mat-red),A700);
+$tag-color2-text:#FFFFFF;
+$tag-color2-background:mat-color(mat-palette($mat-pink),A700);
+$tag-color3-text:#FFFFFF;
+$tag-color3-background:mat-color(mat-palette($mat-purple),A700);
+$tag-color4-text:#FFFFFF;
+$tag-color4-background:mat-color(mat-palette($mat-deep-purple),A700);
+$tag-color5-text:#FFFFFF;
+$tag-color5-background:mat-color(mat-palette($mat-indigo),A700);
+$tag-color6-text:#FFFFFF;
+$tag-color6-background:mat-color(mat-palette($mat-blue),A700);
+$tag-color7-text:#000000;
+$tag-color7-background:mat-color(mat-palette($mat-light-blue),A700);
+$tag-color8-text:#000000;
+$tag-color8-background:mat-color(mat-palette($mat-cyan),A700);
+$tag-color9-text:#000000;
+$tag-color9-background:mat-color(mat-palette($mat-teal),A700);
+$tag-color10-text:#000000;
+$tag-color10-background:mat-color(mat-palette($mat-green),A700);
+$tag-color11-text:#000000;
+$tag-color11-background:mat-color(mat-palette($mat-light-green),A700);
+$tag-color12-text:#000000;
+$tag-color12-background:mat-color(mat-palette($mat-lime),A700);
+$tag-color13-text:#000000;
+$tag-color13-background:mat-color(mat-palette($mat-yellow),A700);
+$tag-color14-text:#000000;
+$tag-color14-background:mat-color(mat-palette($mat-amber),A700);
+$tag-color15-text:#000000;
+$tag-color15-background:mat-color(mat-palette($mat-orange),A700);
+$tag-color16-text:#FFFFFF;
+$tag-color16-background:mat-color(mat-palette($mat-deep-orange),A700);
+$tag-color17-text:#FFFFFF;
+$tag-color17-background:mat-color(mat-palette($mat-brown),700);
+$tag-color18-text:#FFFFFF;
+$tag-color18-background:mat-color(mat-palette($mat-gray),700);
+$tag-color19-text:#FFFFFF;
+$tag-color19-background:mat-color(mat-palette($mat-blue-gray),700);
+
+
+
+
+@include angular-material-theme($peepz-theme);
