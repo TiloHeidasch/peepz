@@ -1,4 +1,4 @@
-import { Logger, ValidationPipe } from '@nestjs/common';
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 import * as express from 'express';
@@ -21,8 +21,8 @@ async function bootstrap() {
   app.use('/', express.static(path.join(__dirname, '..', 'peepz')));
   await app.listen(port, () => {
     const end = new Date().getTime();
-    Log.log("main.ts",bootstrap, start, end, {
-       message:  `Listening at http://localhost:${port}/${globalPrefix}`,
+    Log.log('main.ts', bootstrap, start, end, {
+      message: `Listening at http://localhost:${port}/${globalPrefix}`,
     });
   });
 }
