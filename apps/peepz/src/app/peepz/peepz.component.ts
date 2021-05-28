@@ -53,7 +53,11 @@ export class PeepzComponent implements OnInit {
   }
   doesNameContainSearch(name: string, search: string): boolean {
     return (
-      (name && this.cryptoService.decrypt(name).includes(search)) ||
+      (name &&
+        this.cryptoService
+          .decrypt(name)
+          .toLowerCase()
+          .includes(search.toLowerCase())) ||
       !name ||
       name === ''
     );
@@ -62,7 +66,12 @@ export class PeepzComponent implements OnInit {
   doTagsContainSearch(tags: Tag[], search): boolean {
     let result = false;
     tags.forEach((tag) => {
-      if (this.cryptoService.decrypt(tag.name).includes(search)) {
+      if (
+        this.cryptoService
+          .decrypt(tag.name)
+          .toLowerCase()
+          .includes(search.toLowerCase())
+      ) {
         result = true;
       }
     });
