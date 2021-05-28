@@ -6,11 +6,14 @@ import { CharacteristicTreeComponent } from './characteristic-tree/characteristi
 import { MaterialModule } from '../../material/material.module';
 import { PersonPageRoutingModule } from './person-page-routing.module';
 import { QuillModule } from 'ngx-quill';
+import { CropImageDialog } from './crop-image-dialog/crop-image-dialog.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
     PersonPageComponent,
     DeletePersonDialog,
+    CropImageDialog,
     CharacteristicTreeComponent,
   ],
   imports: [
@@ -19,6 +22,7 @@ import { QuillModule } from 'ngx-quill';
     PersonPageRoutingModule,
     CommonModule,
     MaterialModule,
+    ImageCropperModule,
   ],
   exports: [PersonPageComponent],
 })

@@ -16,6 +16,7 @@ import { TagService } from '../tag.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CryptoService } from '../../crypto.service';
 import { RandomuserService } from '../randomuser.service';
+import { CropImageDialog } from './crop-image-dialog/crop-image-dialog.component';
 
 @Component({
   selector: 'peepz-person-page',
@@ -195,16 +196,13 @@ export class PersonPageComponent implements OnInit {
     });
   }
 
-  uploadImage(imageInput) {
-    const file: File = imageInput.files[0];
-    const reader = new FileReader();
-
-    reader.addEventListener('load', (event: any) => {
-      this.person.picture = this.cryptoService.encrypt(event.target.result);
+  uploadImage() {
+    const dialogRef = this.dialog.open(CropImageDialog);
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(result);
+      this.person.picture = this.cryptoService.encrypt(result);
       this.persist();
     });
-
-    reader.readAsDataURL(file);
   }
   getTagClass(tag: Tag): string {
     return `tag-color${(this.cryptoService.decrypt(tag.name).length - 1) % 20}`;

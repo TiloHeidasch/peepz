@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Upload Image</h1>
+<div mat-dialog-content>
+  <input type="file" (change)="fileChangeEvent($event)" />
+
+<image-cropper
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="1 / 1"
+    format="jpeg"
+    (imageCropped)="imageCropped($event)"
+></image-cropper>
+</div>
+<div mat-dialog-actions class="flex-end">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="croppedImage">Ok</button>
+</div>
