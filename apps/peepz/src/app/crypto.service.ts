@@ -22,20 +22,20 @@ export class CryptoService {
   }
 
   encrypt(data: string): string {
-    if (!data || data === '') {
+    if (!data || data === '' || this.encrypted) {
       return '';
     }
     return CryptoJS.AES.encrypt(data.trim(), this.password.trim()).toString();
   }
   decrypt(data: string): string {
-    if (!data || data === '') {
+    if (!data || data === '' || this.encrypted) {
       return '';
     }
     try {
       return CryptoJS.AES.decrypt(data.trim(), this.password.trim()).toString(
         CryptoJS.enc.Utf8
       );
-    } catch (error) {
+    } catch (error) {   
       this._snackBar.open('Decryption Failed - locking crypt', 'OK', {
         duration: 3000,
       });
