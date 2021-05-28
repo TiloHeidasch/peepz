@@ -205,7 +205,17 @@ export class PersonPageComponent implements OnInit {
     });
   }
   getTagClass(tag: Tag): string {
-    return `tag-color${(this.cryptoService.decrypt(tag.name).length - 1) % 20}`;
+    return `tag-color${
+      (this.cryptoService
+        .decrypt(tag.name)
+        .replace('a', ' ')
+        .replace('e', '  ')
+        .replace('i', '   ')
+        .replace('o', '    ')
+        .replace('u', '     ').length -
+        1) %
+      20
+    }`;
   }
   private _filter(value: string): Tag[] {
     if (!value || value === '') {
