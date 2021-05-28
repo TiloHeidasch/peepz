@@ -4,12 +4,11 @@ import { PersonController } from './person.controller';
 import { PersonService } from './person.service';
 import { Person, PersonSchema } from './types/person.schema';
 import { UserModule } from '../user/user.module';
+import { environment } from '../../environments/environment';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      'mongodb://' + (process.env.mongo || '10.0.0.12') + '/peepz'
-    ),
+    MongooseModule.forRoot('mongodb://' + environment.database + '/peepz'),
     MongooseModule.forFeature([{ name: Person.name, schema: PersonSchema }]),
     UserModule,
   ],

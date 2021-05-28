@@ -5,12 +5,11 @@ import { User, UserSchema } from './types/user.schema';
 import { UserController } from './user.controller';
 import { CaptchaService } from './captcha.service';
 import { ThrottlerModule } from '@nestjs/throttler';
+import { environment } from '../../environments/environment';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      'mongodb://' + (process.env.mongo || '10.0.0.12') + '/peepz'
-    ),
+    MongooseModule.forRoot('mongodb://' + environment.database + '/peepz'),
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
     ThrottlerModule.forRoot(),
     HttpModule,

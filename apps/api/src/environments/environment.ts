@@ -5,4 +5,5 @@ export const environment = {
   jwtExpiry: '900s',
   refreshSecret: 'secretKey',
   refreshExpiry: '86400s',
+  database: '10.0.0.12',
 };
