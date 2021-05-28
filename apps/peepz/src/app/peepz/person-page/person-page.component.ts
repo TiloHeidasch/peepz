@@ -217,18 +217,40 @@ export class PersonPageComponent implements OnInit {
       20
     }`;
   }
+  private getUniqueTags(tags: Tag[]): Tag[] {
+    const uniqueTags: Tag[] = [];
+    tags.forEach((tag) => {
+      if (!this.isTagInTagArray(tag, uniqueTags)) {
+        uniqueTags.push(tag);
+      }
+    });    
+    return uniqueTags;
+  }
+  private isTagInTagArray(tag: Tag, tagArray: Tag[]): boolean {
+    for (let index = 0; index < tagArray.length; index++) {
+      const tagArrayElement = tagArray[index];
+      if (
+        this.cryptoService.decrypt(tag.name) ===
+        this.cryptoService.decrypt(tagArrayElement.name)
+      ) {
+        return true;
+      }
+    }
+    return false;
+  }
   private _filter(value: string): Tag[] {
     if (!value || value === '') {
-      return this.allTags;
+      return this.getUniqueTags(this.allTags);
     }
     const filterValue = value.toLowerCase();
-
-    return this.allTags.filter(
-      (tag) =>
-        this.cryptoService
-          .decrypt(tag.name)
-          .toLowerCase()
-          .indexOf(filterValue) === 0
+    return this.getUniqueTags(
+      this.allTags.filter(
+            (tag) =>
+              this.cryptoService
+                .decrypt(tag.name)
+                .toLowerCase()
+                .indexOf(filterValue) === 0
+          )
     );
   }
 

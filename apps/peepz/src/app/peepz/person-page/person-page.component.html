@@ -84,7 +84,6 @@
               [matChipInputFor]="tagList"
               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
               (matChipInputTokenEnd)="addTag($event)"
-              (change)="addTag($event.target)"
             />
           </mat-chip-list>
           <mat-autocomplete

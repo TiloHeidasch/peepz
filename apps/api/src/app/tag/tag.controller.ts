@@ -47,7 +47,6 @@ export class TagController {
     const end = new Date().getTime();
     Log.log(TagController.name, this.getAll, start, end, {
       username,
-      result,
     });
     return result;
   }
