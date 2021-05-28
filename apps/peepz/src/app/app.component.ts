@@ -2,6 +2,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AppUpdateService } from './app-update.service';
 import { CryptoService } from './crypto.service';
 import { DecryptDialog } from './decrypt-dialog/decrypt-dialog.component';
 
@@ -35,7 +36,8 @@ export class AppComponent implements OnInit, OnDestroy {
     media: MediaMatcher,
     public cryptoService: CryptoService,
     private dialog: MatDialog,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private appUpdate: AppUpdateService
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 980px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();

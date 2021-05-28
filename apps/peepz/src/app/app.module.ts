@@ -9,9 +9,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { DecryptDialog } from './decrypt-dialog/decrypt-dialog.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { UpdateDialog } from './update-dialog/update-dialog.component';
+import { AppUpdateService } from './app-update.service';
 
 @NgModule({
-  declarations: [AppComponent, DecryptDialog],
+  declarations: [AppComponent, DecryptDialog, UpdateDialog],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -22,10 +24,10 @@ import { environment } from '../environments/environment';
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
-  providers: [],
+  providers: [AppUpdateService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

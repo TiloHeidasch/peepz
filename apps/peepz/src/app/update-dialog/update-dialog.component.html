@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>App Update available</h1>
+<div mat-dialog-content>
+  <p>Choose <strong>Update</strong> to update</p>  
+</div>
+<div mat-dialog-actions class="flex-end">
+  <button mat-button (click)="onNoClick()">Ignore</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="true">Update</button>
+</div>
