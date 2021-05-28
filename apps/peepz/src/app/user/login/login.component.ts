@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { first, tap } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'peepz-login',
@@ -11,11 +12,11 @@ import { first, tap } from 'rxjs/operators';
 })
 export class LoginComponent implements OnInit {
   returnUrl: string;
-  error = '';
   constructor(
     private userService: UserService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private _snackBar: MatSnackBar
   ) {}
   usernameFormControl = new FormControl('', [
     Validators.required,
@@ -73,7 +74,7 @@ export class LoginComponent implements OnInit {
         },
         error: (error) => {
           console.error(error);
-          this.error = error.message;
+          this._snackBar.open(`Error - ${error.message}`, 'OK');
         },
       });
   }

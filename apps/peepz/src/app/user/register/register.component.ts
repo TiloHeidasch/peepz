@@ -75,7 +75,7 @@ export class RegisterComponent implements OnInit {
         },
         error: (error) => {
           console.error(error);
-          this._snackBar.open("That didn't work", 'Retry', { duration: 3000 });
+          this._snackBar.open(`Error - ${error.message}`, 'OK');
         },
       });
   }

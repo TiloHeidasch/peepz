@@ -5,7 +5,7 @@
     <img id="login-greeting" src="assets/login.png" alt="" srcset="" />
   </div>
 
-    <mat-form-field appearance="fill" class="login-form-field">
+    <mat-form-field id="login-form-username" appearance="fill" class="login-form-field">
       <mat-label>Username</mat-label>
       <input
         matInput
@@ -17,7 +17,7 @@
         getUsernameErrorMessage()
       }}</mat-error>
     </mat-form-field>
-    <mat-form-field appearance="fill" class="login-form-field">
+    <mat-form-field id="login-form-password" appearance="fill" class="login-form-field">
       <mat-label>Password</mat-label>
       <input
         matInput
@@ -25,7 +25,7 @@
         [(ngModel)]="password"
         [formControl]="passwordFormControl"
       />
-      <button
+      <button  id="login-button-password-toggle"
         mat-icon-button
         matSuffix
         (click)="hidePassword = !hidePassword"
@@ -40,7 +40,7 @@
         getPasswordErrorMessage()
       }}</mat-error>
     </mat-form-field>
-    <button
+    <button id="login-button-login"
       mat-raised-button
       color="primary"
       class="login-button"
@@ -48,7 +48,7 @@
     >
       Login
     </button>
-    <button
+    <button id="login-button-register"
       mat-stroked-button
       color="primary"
       class="login-button"
@@ -56,5 +56,4 @@
     >
       Register
     </button>
-  <mat-error *ngIf="error">{{ error }}</mat-error>
 </div>
