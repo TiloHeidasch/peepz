@@ -33,11 +33,23 @@ export class PeepzComponent implements OnInit {
   }
   filter() {
     const search = this.searchFormControl.value;
-    this.filteredPeople = this.people.filter(
-      (person) =>
-        this.doesNameContainSearch(person.name, search) ||
-        this.doTagsContainSearch(person.tags, search)
-    );
+    this.filteredPeople = this.people
+      .filter(
+        (person) =>
+          this.doesNameContainSearch(person.name, search) ||
+          this.doTagsContainSearch(person.tags, search)
+      )
+      .sort((p1, p2) => {
+        const p1name  =  this.cryptoService.decrypt(p1.name);;
+        const p2name  =  this.cryptoService.decrypt(p2.name);;
+        if (p1name > p2name) {
+          return 1;
+        }
+        if (p1name < p2name) {
+          return -1;
+        }
+        return 0;
+      });
   }
   doesNameContainSearch(name: string, search: string): boolean {
     return (
