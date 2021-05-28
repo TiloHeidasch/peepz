@@ -45,6 +45,7 @@
       color="primary"
       class="login-button"
       (click)="login()"
+      [disabled]="usernameFormControl.invalid||passwordFormControl.invalid"
     >
       Login
     </button>
