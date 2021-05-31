@@ -19,7 +19,7 @@
   >
   <div id="banner-wrapper"><img id="banner" src="assets/peepz.png" alt="" srcset=""></div>
     <mat-nav-list>
-      <mat-list-item [routerLink]="nav.link" *ngFor="let nav of navElements">
+      <mat-list-item [id]="nav.title" [routerLink]="nav.link" *ngFor="let nav of navElements">
     <mat-icon mat-list-icon>{{nav.icon}}</mat-icon>
     <div mat-line>{{nav.title}}</div></mat-list-item>
     </mat-nav-list>
