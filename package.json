@@ -10,7 +10,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
-    "e2e": "docker-compose up -d && docker cp add-testuser.js mongo:add-testuser.js  && docker exec -it mongo mongo peepz add-testuser.js && ng e2e && docker-compose down",
+    "e2e": "docker-compose up -d && docker cp add-testuser.js mongo:add-testuser.js  && docker exec mongo mongo peepz add-testuser.js && ng e2e && docker-compose down",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",
     "affected:build": "nx affected:build",
