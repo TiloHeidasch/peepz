@@ -10,6 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Setup Angular
+        run: npm install @angular/cli
       - uses: actions/checkout@v2
       - run: npm run e2e
   deploy:
