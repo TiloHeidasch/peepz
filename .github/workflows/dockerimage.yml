@@ -17,6 +17,7 @@ jobs:
         run: npm install @angular/cli
       - name: Install dependencies
         run: npm install
+      - run: ng e2e
       - run: npm run e2e
   deploy:
     runs-on: ubuntu-latest
