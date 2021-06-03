@@ -15,7 +15,6 @@ jobs:
         uses: actions/setup-node@v2.1.2
       - name: Setup Angular
         run: npm install @angular/cli
-      - run: npm run e2e
       - name: Install dependencies
         run: npm install
       - run: npm run e2e
