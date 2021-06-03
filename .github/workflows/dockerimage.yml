@@ -2,15 +2,20 @@ name: Docker Build and Push
 
 on:
   push:
-    branches: [main]
   pull_request:
-    branches: [main]
   workflow_dispatch:
 
 jobs:
-  build:
+  e2e:
     runs-on: ubuntu-latest
-
+    
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm run e2e
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs: e2e
     steps:
       - uses: actions/checkout@v2
       - uses: docker/build-push-action@v1

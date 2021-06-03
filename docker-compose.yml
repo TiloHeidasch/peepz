@@ -4,6 +4,9 @@ services:
            container_name: api
            build: .
            restart: always
+           environment:
+            - PORT=80
+            - mongo=mongo
            ports:
              - "80:80"
            links:
@@ -11,7 +14,5 @@ services:
        mongo:
              container_name: mongo
              image: mongo
-             volumes:
-               - ./data:/data/db
              ports:
-               - '27018:27017'
+               - '27017:27017'

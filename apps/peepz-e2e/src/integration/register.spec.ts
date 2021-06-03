@@ -1,6 +1,6 @@
 describe('register', () => {
   beforeEach(() => {
-    cy.visit('/user/register');
+    cy.visit('localhost/user/register');
   });
   it('should contain the Welcome Image', () => {
     cy.get('#register-greeting').should('be.visible');

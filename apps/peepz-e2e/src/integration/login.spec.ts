@@ -1,6 +1,6 @@
 describe('login', () => {
   beforeEach(() => {
-    cy.visit('/user/login');
+    cy.visit('localhost/user/login');
   });
   it('should contain the Login Image', () => {
     cy.get('#login-greeting').should('be.visible');
@@ -97,7 +97,7 @@ describe('login', () => {
       cy.get('.mat-snack-bar-container').should('not.exist');
     });
     it('should forward you to /peepz after successful Login, when coming from /peepz', () => {
-      cy.visit('/peepz');
+      cy.visit('localhost/peepz');
       cy.url().should('contain', '/user/login');
       cy.get('#login-form-username > .mat-form-field-wrapper').type('testuser');
       cy.get('#login-form-password > .mat-form-field-wrapper').type(

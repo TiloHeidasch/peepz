@@ -1,7 +1,7 @@
 describe('peepz', () => {
   describe('default', () => {
     beforeEach(() => {
-      cy.visit('/');
+      cy.visit('localhost/');
     });
     it('should have a menu button', () => {
       cy.get('.mat-toolbar > :nth-child(1) > .mat-button-wrapper > .mat-icon')
@@ -64,30 +64,30 @@ describe('peepz', () => {
   });
   describe('not logged in', () => {
     it('peepz should redirect to login', () => {
-      cy.visit('/peepz');
+      cy.visit('localhost/peepz');
       cy.url().should('include', '/user/login');
     });
     it('user should redirect to login', () => {
-      cy.visit('/user');
+      cy.visit('localhost/user');
       cy.url().should('include', '/user/login');
     });
     it('anything should redirect to login', () => {
       const random = Math.random().toString(36).substring(2, 10);
-      cy.visit(`/${random}`);
+      cy.visit(`localhost/${random}`);
       cy.url().should('include', '/user/login');
     });
     it('login should go to login', () => {
-      cy.visit('/user/login');
+      cy.visit('localhost/user/login');
       cy.url().should('include', '/user/login');
     });
     it('register should go to register', () => {
-      cy.visit('/user/register');
+      cy.visit('localhost/user/register');
       cy.url().should('include', '/user/register');
     });
   });
   describe('logged in', () => {
     beforeEach(() => {
-      cy.visit('/user/login');
+      cy.visit('localhost/user/login');
       cy.get('#login-form-username > .mat-form-field-wrapper').type('testuser');
       cy.get('#login-form-password > .mat-form-field-wrapper').type(
         'testpassword'
