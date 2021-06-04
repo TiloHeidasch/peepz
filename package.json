@@ -85,7 +85,7 @@
     "@angular/language-service": "^11.2.0",
     "@nestjs/schematics": "^7.0.0",
     "@nestjs/testing": "^7.0.0",
-    "@nrwl/cli": "12.1.0",
+    "@nrwl/cli": "12.3.6",
     "@nrwl/cypress": "12.1.0",
     "@nrwl/eslint-plugin-nx": "12.3.6",
     "@nrwl/jest": "12.1.0",
