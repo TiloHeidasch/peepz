@@ -135,12 +135,10 @@
           "builder": "@nrwl/cypress:cypress",
           "options": {
             "cypressConfig": "apps/peepz-e2e/cypress.json",
-            "tsConfig": "apps/peepz-e2e/tsconfig.e2e.json",
-            "devServerTarget": "peepz:serve"
+            "tsConfig": "apps/peepz-e2e/tsconfig.e2e.json"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "peepz:serve:production"
             }
           }
         },
