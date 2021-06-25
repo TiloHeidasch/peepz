@@ -38,7 +38,7 @@
     "@angular/material": "^11.2.11",
     "@angular/platform-browser": "^11.2.0",
     "@angular/platform-browser-dynamic": "^11.2.0",
-    "@angular/router": "^12.0.4",
+    "@angular/router": "^12.1.0",
     "@angular/service-worker": "^11.2.0",
     "@nestjs/common": "^7.6.17",
     "@nestjs/core": "^7.6.17",
