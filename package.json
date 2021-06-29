@@ -86,7 +86,7 @@
     "@nestjs/schematics": "^7.0.0",
     "@nestjs/testing": "^7.6.17",
     "@nrwl/cli": "12.3.6",
-    "@nrwl/cypress": "12.3.6",
+    "@nrwl/cypress": "12.5.0",
     "@nrwl/eslint-plugin-nx": "12.3.6",
     "@nrwl/jest": "12.3.6",
     "@nrwl/linter": "12.3.6",
