@@ -90,7 +90,7 @@
     "@nrwl/eslint-plugin-nx": "12.3.6",
     "@nrwl/jest": "12.3.6",
     "@nrwl/linter": "12.3.6",
-    "@nrwl/nest": "12.3.6",
+    "@nrwl/nest": "12.5.8",
     "@nrwl/node": "12.3.6",
     "@nrwl/tao": "12.3.6",
     "@nrwl/workspace": "12.3.6",
