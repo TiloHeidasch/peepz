@@ -70,7 +70,7 @@
     "quill-emoji": "^0.2.0",
     "quill-mention": "^3.0.3",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "~7.1.0",
+    "rxjs": "~7.2.0",
     "swagger-ui-express": "^4.1.6",
     "tslib": "^2.3.0",
     "zone.js": "^0.11.4"
@@ -99,7 +99,7 @@
     "@types/node": "15.12.2",
     "@types/passport": "^1.0.6",
     "@types/passport-jwt": "^3.0.5",
-    "@typescript-eslint/eslint-plugin": "4.26.0",
+    "@typescript-eslint/eslint-plugin": "4.28.5",
     "@typescript-eslint/parser": "4.27.0",
     "cypress": "^6.0.1",
     "dotenv": "10.0.0",
@@ -111,6 +111,6 @@
     "prettier": "2.3.1",
     "ts-jest": "27.0.3",
     "ts-node": "~10.0.0",
-    "typescript": "~4.1.4"
+    "typescript": "~4.1.6"
   }
 }
