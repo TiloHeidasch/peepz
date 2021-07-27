@@ -62,7 +62,7 @@
     "mongoose": "^5.13.3",
     "ng-recaptcha": "^8.0.0",
     "ngx-image-cropper": "^3.3.5",
-    "ngx-quill": "^14.0.0",
+    "ngx-quill": "^14.1.2",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
