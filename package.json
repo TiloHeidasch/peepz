@@ -95,7 +95,7 @@
     "@nrwl/tao": "12.7.1",
     "@nrwl/workspace": "12.6.3",
     "@types/bcrypt": "^5.0.0",
-    "@types/jest": "26.0.24",
+    "@types/jest": "27.0.2",
     "@types/node": "16.6.1",
     "@types/passport": "^1.0.7",
     "@types/passport-jwt": "^3.0.6",
