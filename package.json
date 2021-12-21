@@ -89,7 +89,7 @@
     "@nrwl/cypress": "12.7.1",
     "@nrwl/eslint-plugin-nx": "12.6.4",
     "@nrwl/jest": "12.6.4",
-    "@nrwl/linter": "12.6.4",
+    "@nrwl/linter": "13.3.11",
     "@nrwl/nest": "12.7.1",
     "@nrwl/node": "12.6.4",
     "@nrwl/tao": "12.7.1",
